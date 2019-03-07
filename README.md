@@ -1,8 +1,46 @@
 # DelegateIfNil
-Short description and motivation.
+
+A simple gem to add nil delegation to an associated model if an attribute is `nil`.
 
 ## Usage
-How to use my plugin.
+
+Add this to your model:
+
+```ruby
+class SomeModel < ApplicationRecord
+    extend DelegateIfNil
+    belongs_to :owning_model
+
+    nil_delegate :animal, to: :owning_model
+end
+```
+
+`animal` will now delegate to `owning_model` if it's `nil` on an instance of `SomeModel`.
+
+You also get `_source` methods, which will tell you where the `animal` value comes from.
+
+You'll get the following results:
+
+```ruby
+om = OwningModel.create(animal: "Cat")
+
+some_model = SomeModel.create(animal: nil, owning_model = om)
+some_model.animal # "Cat"
+some_model.animal_source # "owning_model"
+
+some_model = SomeModel.create(animal: "Dog", owning_model = om)
+some_model.animal # Dog
+some_model.animal_source # "self"
+
+om = OwningModel.create(animal: nil)
+some_model = SomeModel.create(animal: nil, owning_model = om)
+some_model.animal # nil
+some_model.animal_source # "unset"
+
+```
+
+
+
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -20,9 +58,6 @@ Or install it yourself as:
 ```bash
 $ gem install delegate_if_nil
 ```
-
-## Contributing
-Contribution directions go here.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
