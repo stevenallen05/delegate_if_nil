@@ -46,7 +46,7 @@ some_model.animal_source # "unset"
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'delegate_if_nil'
+gem 'delegate_if_nil', git: 'https://github.com/stevenallen05/delegate_if_nil.git'
 ```
 
 And then execute:
