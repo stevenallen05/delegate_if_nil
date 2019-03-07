@@ -9,15 +9,16 @@ Gem::Specification.new do |s|
   s.version     = DelegateIfNil::VERSION
   s.authors     = ["Steven Allen"]
   s.email       = ["sallen@amberstyle.ca"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of DelegateIfNil."
-  s.description = "TODO: Description of DelegateIfNil."
+  s.homepage    = "https://github.com/stevenallen05/delegate_if_nil"
+  s.summary     = "Simple delegation of nil attributes to an association"
+  s.description = "Add to a model to simply delegate attributes to an associated record"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", ">= 4.2."
+  s.add_dependency "rails", ">= 4.2"
 
-  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "byebug"
   s.add_development_dependency "guard"
+  s.add_development_dependency "sqlite3", "~> 1.3.6"
 end

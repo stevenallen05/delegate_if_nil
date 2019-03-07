@@ -13,3 +13,10 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
+
+group :development, :test do
+  gem "awesome_print"
+  gem "byebug"
+  gem "guard"
+  gem "sqlite3", "~> 1.3.6"
+end
