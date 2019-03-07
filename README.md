@@ -17,7 +17,7 @@ end
 
 `animal` will now delegate to `owning_model` if it's `nil` on an instance of `SomeModel`.
 
-You also get `_source` methods, which will tell you where the `animal` value comes from.
+You also get `_source` methods, which will tell you where the `animal` value comes from. If it's not set on either one, it will return `"unset"`
 
 You'll get the following results:
 
