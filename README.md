@@ -39,8 +39,18 @@ some_model.animal_source # "unset"
 
 ```
 
+It also works for multiple attributes. EG:
 
+```ruby
+class SomeModel < ApplicationRecord
+    extend DelegateIfNil
+    belongs_to :owning_model
 
+    nil_delegate :animal, :phone_number, :name, to: :owning_model
+end
+```
+
+It also resolves correctly for recursive delegations. IE: if `owning_model` delgates an attribute if `nil`, it will correctly report the source all the way down the chain, terminating either in `self`, `unset`, or the association name.
 
 ## Installation
 Add this line to your application's Gemfile:

@@ -9,10 +9,20 @@ module DelegateIfNil
         self[attr].nil? ? self.send(to)&.send(attr) : self[attr]
       end
 
-      define_method "#{attr}_source".to_sym do
+      source_method = "#{attr}_source".to_sym
+      define_method source_method do
+        # byebug
         return "self" unless self[attr].nil?
-        return to.to_s unless self.send(to).send(attr).nil?
-        "unset"
+        if self.send(to)&.respond_to?(source_method)
+          to_source = self.send(to).send(source_method)
+          return to.to_s if to_source == "self"
+          return to_source
+        else
+          return self.send(to)&.send(attr).nil? ? "unset" : to.to_s
+        end
+        # return self.send(to).send(source_method) if self.send(to)&.respond_to?(source_method)
+        # return to.to_s unless self.send(to).send(attr).nil?
+        # "unset"
       end
     end
   end

@@ -17,6 +17,7 @@ gemspec
 group :development, :test do
   gem "awesome_print"
   gem "byebug"
+  gem "factory_bot"
   gem "guard"
   gem "sqlite3", "~> 1.3.6"
 end

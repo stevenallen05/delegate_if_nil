@@ -1,10 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-with_nil:
-  parent: one
-
-without_nil:
+one:
   attribute_one: MyString
   attribute_two: MyString
   attribute_three: MyString
-  parent: two
+
+two:
+  attribute_one: MyString
+  attribute_two: MyString
+  attribute_three: MyString
