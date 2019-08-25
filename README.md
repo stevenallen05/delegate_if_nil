@@ -54,6 +54,31 @@ end
 
 It also resolves correctly for recursive delegations. IE: if `owning_model` delgates an attribute if `nil`, it will correctly report the source all the way down the chain, terminating either in `self`, `unset`, or the association name.
 
+## Example
+
+This is an example based off a real-world project.
+
+A `User` has many `notification_channels`. Each `user` and `notification_channel` has a `notifications_enabled` boolean flag.
+
+With this setup, a `user` can set a default value for `notifications_enabled`, and each channel can override the default.
+
+eg:
+
+```ruby
+class User < ActiveRecord::Base
+    # notifications_enabled is a boolean attribute on the user model
+    has_many :notification_channels
+end
+
+class NotificationChannel < ActiveRecord::Base
+    # notifications_enabled is a boolean attribute on the notification_channel model
+    belongs_to :user
+    nil_delegate :notifications_enabled, to: :user
+end
+```
+
+Now, to see if a specific channel should be enabled, simple call `notification_channel.notifications_enabled`, and it will resolve the correct value for that channel. 
+
 ## Installation
 Add this line to your application's Gemfile:
 
