@@ -1,5 +1,7 @@
-source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+git_source(:github) {|repo| "https://github.com/#{repo}.git" }
 
 # Declare your gem's dependencies in delegate_if_nil.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -21,5 +23,6 @@ group :development, :test do
   gem "guard"
   gem "guard-bundler"
   gem "guard-minitest"
-  gem "sqlite3", "~> 1.3.6"
+  gem "rubocop"
+  gem "sqlite3"
 end
