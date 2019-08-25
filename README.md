@@ -52,11 +52,15 @@ end
 
 It also resolves correctly for recursive delegations. IE: if `owning_model` delgates an attribute if `nil`, it will correctly report the source all the way down the chain, terminating either in `self`, `unset`, or the association name.
 
+### `_delegated?`
+
+`delegate_if_nil` also adds a simple `<attribute>_delegated?` method. It will return `true` if the attribute has been delegated, and `false` if it hasn't. Pretty straightforward.
+
 ## Installation
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'delegate_if_nil', git: 'https://github.com/stevenallen05/delegate_if_nil.git'
+gem 'delegate_if_nil'
 ```
 
 And then execute:
