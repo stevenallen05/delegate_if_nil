@@ -27,16 +27,18 @@ om = OwningModel.create(animal: "Cat")
 some_model = SomeModel.create(animal: nil, owning_model = om)
 some_model.animal # "Cat"
 some_model.animal_source # "owning_model"
+some_model.animal_delegated? # true
 
 some_model = SomeModel.create(animal: "Dog", owning_model = om)
 some_model.animal # Dog
 some_model.animal_source # "self"
+some_model.animal_delegated? # false
 
 om = OwningModel.create(animal: nil)
 some_model = SomeModel.create(animal: nil, owning_model = om)
 some_model.animal # nil
 some_model.animal_source # "unset"
-
+some_model.animal_delegated? # true
 ```
 
 It also works for multiple attributes. EG:
@@ -51,10 +53,6 @@ end
 ```
 
 It also resolves correctly for recursive delegations. IE: if `owning_model` delgates an attribute if `nil`, it will correctly report the source all the way down the chain, terminating either in `self`, `unset`, or the association name.
-
-### `_delegated?`
-
-`delegate_if_nil` also adds a simple `<attribute>_delegated?` method. It will return `true` if the attribute has been delegated, and `false` if it hasn't. Pretty straightforward.
 
 ## Installation
 Add this line to your application's Gemfile:
