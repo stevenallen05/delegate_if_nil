@@ -20,6 +20,10 @@ module DelegateIfNil
         else
           return self.send(to)&.send(attr).nil? ? "unset" : to.to_s
         end
+
+        delegted_bool_method = "#{attr}_delegated?".to_sym do
+          self[attr].nil?
+        end
         # return self.send(to).send(source_method) if self.send(to)&.respond_to?(source_method)
         # return to.to_s unless self.send(to).send(attr).nil?
         # "unset"
