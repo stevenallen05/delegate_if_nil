@@ -5,6 +5,7 @@ AllCops:
     - 'vendor/**/*'
     - 'bin/**/*'
     - 'test/**/*'
+    - 'Guardfile'
   TargetRubyVersion: 2.4
 
 Metrics/LineLength:
