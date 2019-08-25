@@ -19,5 +19,7 @@ group :development, :test do
   gem "byebug"
   gem "factory_bot"
   gem "guard"
+  gem "guard-bundler"
+  gem "guard-minitest"
   gem "sqlite3", "~> 1.3.6"
 end
