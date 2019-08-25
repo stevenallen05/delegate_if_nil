@@ -42,4 +42,11 @@ class ChildTest < ActiveSupport::TestCase
                                       grandparent: nil)).attribute_one_source, "unset"
   end
 
+  test "_delegated? reports `true` when delegated up the chain" do
+    assert_equal build(:child, :falls_back).attribute_one_delegated?, true
+  end
+
+  test "_delegated? reports `false` when not delegated" do
+    assert_equal build(:child).attribute_one_delegated?, false
+  end
 end
