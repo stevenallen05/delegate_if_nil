@@ -4,6 +4,8 @@ require "delegate_if_nil/railtie"
 
 module DelegateIfNil
   extend ActiveSupport::Concern
+  
+  alias_methodn :delegate_if_nil, :nil_delegate
 
   def nil_delegate(*attrs, to:)
     attrs.each do |attr|
