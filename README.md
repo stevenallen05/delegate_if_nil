@@ -17,6 +17,19 @@ end
 
 `animal` will now delegate to `owning_model` if it's `nil` on an instance of `SomeModel`.
 
+`delegate_if_nil` is available as an alias:
+
+```ruby
+class SomeModel < ApplicationRecord
+    extend DelegateIfNil
+    belongs_to :owning_model
+
+    nil_delegate :animal, to: :owning_model
+    delegate_if_nil :animal, to: :owning_model # Exact same as the line above
+    
+end
+```
+
 You also get `_source` methods, which will tell you where the `animal` value comes from. If it's not set on either one, it will return `"unset"`
 
 You'll get the following results:
