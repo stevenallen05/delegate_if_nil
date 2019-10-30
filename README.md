@@ -37,18 +37,18 @@ You'll get the following results:
 ```ruby
 om = OwningModel.create(animal: "Cat")
 
-some_model = SomeModel.create(animal: nil, owning_model = om)
+some_model = SomeModel.create(animal: nil, owning_model: om)
 some_model.animal # "Cat"
 some_model.animal_source # "owning_model"
 some_model.animal_delegated? # true
 
-some_model = SomeModel.create(animal: "Dog", owning_model = om)
+some_model = SomeModel.create(animal: "Dog", owning_model: om)
 some_model.animal # Dog
 some_model.animal_source # "self"
 some_model.animal_delegated? # false
 
 om = OwningModel.create(animal: nil)
-some_model = SomeModel.create(animal: nil, owning_model = om)
+some_model = SomeModel.create(animal: nil, owning_model: om)
 some_model.animal # nil
 some_model.animal_source # "unset"
 some_model.animal_delegated? # true
