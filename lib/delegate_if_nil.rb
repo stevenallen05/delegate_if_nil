@@ -5,12 +5,26 @@ require "delegate_if_nil/railtie"
 module DelegateIfNil
   extend ActiveSupport::Concern
   
-  alias_methodn :delegate_if_nil, :nil_delegate
+  alias_method :delegate_if_nil, :nil_delegate
 
   def nil_delegate(*attrs, to:)
     attrs.each do |attr|
       define_method attr do
         self[attr].nil? ? send(to)&.send(attr) : self[attr]
+      end
+      
+      source_object_method = "#{attr}_source_object".to_sym
+      define_method source_object_method do
+        return self unless self[attr].nil?
+
+        if send(to)&.respond_to?(source_method)
+          to_source = send(to).send(source_method)
+          return to if to_source == self
+
+          return to_source
+        else
+          return send(to)&.send(attr).nil? ? nil : to
+        end
       end
 
       source_method = "#{attr}_source".to_sym
