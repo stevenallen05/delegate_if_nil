@@ -15,8 +15,8 @@ module DelegateIfNil
       define_method source_object_method do
         return self unless self[attr].nil?
 
-        if send(to)&.respond_to?(source_method)
-          to_source = send(to).send(source_method)
+        if send(to)&.respond_to?(source_object_method)
+          to_source = send(to).send(source_object_method)
           return to if to_source == self
 
           return to_source

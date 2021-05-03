@@ -21,6 +21,12 @@ class ChildTest < ActiveSupport::TestCase
     assert_equal build(:child, :falls_back, parent: build(:parent, :falls_back)).attribute_two_source, "unset"
   end
 
+  test "_source_object reports getting from the parent when falling back" do
+    assert_equal build(:child, :falls_back).attribute_one_source, "parent"
+    assert(build(:child, :falls_back, parent: build(:parent, :falls_back)).attribute_one_source_object).is_a?(Grandparent)
+    assert_nil build(:child, :falls_back, parent: build(:parent, :falls_back)).attribute_two_source_object, nil
+  end
+
   test "_source reports getting from self when not falling back" do
     assert_equal build(:child).attribute_one_source, "self"
   end
