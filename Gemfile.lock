@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    delegate_if_nil (0.3.1)
+    delegate_if_nil (0.6.0)
       rails (>= 6.0)
 
 GEM
@@ -118,7 +118,6 @@ GEM
     marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
     minitest (5.15.0)
     nenv (0.3.0)
     net-imap (0.2.3)
@@ -136,8 +135,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.13.6)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
     notiffany (0.1.3)
       nenv (~> 0.1)
